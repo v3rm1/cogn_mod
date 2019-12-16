@@ -1,0 +1,260 @@
+---
+API: 2.1
+OpenSesame: 3.2.8
+Platform: posix
+---
+set width 1024
+set uniform_coordinates yes
+set title TimingLong
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend xpyriment
+set keyboard_backend legacy
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 18
+set font_italic no
+set font_family mono
+set font_bold no
+set experiment_path "/Users/rijn/Downloads"
+set disable_garbage_collection yes
+set description "The main experiment item"
+set coordinates uniform
+set compensation 0
+set color_backend legacy
+set clock_backend legacy
+set canvas_backend xpyriment
+set background black
+
+define sketchpad Clearscreen
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad Clearscreen_1
+	set duration 0
+	set description "Displays stimuli"
+
+define sketchpad Clearscreen_2
+	set duration 0
+	set description "Displays stimuli"
+
+define advanced_delay Duration
+	set jitter_mode Uniform
+	set jitter 200
+	set duration 800
+	set description "Waits for a specified duration"
+
+define advanced_delay Duration_1
+	set jitter_mode Uniform
+	set jitter 500
+	set duration 2500
+	set description "Waits for a specified duration"
+
+define sketchpad GreenDot
+	set duration "[duration]"
+	set description "Displays stimuli"
+	draw circle color="#00aa00" fill=1 penwidth=1 r=45.2548339959 show_if=always x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="!" x=0 y=0 z_index=0
+
+define sketchpad GreenDot_1
+	set duration "[duration]"
+	set description "Displays stimuli"
+	draw circle color="#00aa00" fill=1 penwidth=1 r=45.2548339959 show_if=always x=0 y=0 z_index=0
+
+define sketchpad Instructions
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="Welcome at the CogMod 2019 experiment<br /><br />You will see a green circle appear on the screen, and<br />disappear again. Pay attention to its duration.<br /><br />Then a red circle appears, and your task is to press<br />the spacebar as soon as you think that the red circle<br />was as long on the screen as the green one was. <br /><br />So, reproduce the duration of the green circle! Note<br />that there are a number of different durations in this<br />experiment.<br /><br />Please, do not count or use any other timing-tricks, <br />as we are interested in your inner sense of time.<br /><br />There is no feedback in this task, just do the best <br />you can! This block will last about 15 minutes.<br /><br />Press any key to continue." x=0.0 y=0.0 z_index=0
+
+define sketchpad Instructions2
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="In the next block, you will be asked to do <br />the same task another time. The durations might<br />be slightly different, depending on condition.<br /><br />We know the task is not very thrilling, but please <br />try to remain focussed for the whole block.<br /><br />Again, please do not count or use any other explicit<br />strategies to keep time.<br /><br />Press any key to get started" x=0 y=0 z_index=0
+
+define advanced_delay IsI
+	set jitter_mode Uniform
+	set jitter 500
+	set duration 3000
+	set description "Waits for a specified duration"
+
+define advanced_delay IsI_1
+	set jitter_mode Uniform
+	set jitter 500
+	set duration 4500
+	set description "Waits for a specified duration"
+
+define keyboard_response KeyPress_1
+	set timeout infinite
+	set flush yes
+	set event_type keyrelease
+	set duration keypress
+	set description Keypress
+
+define sketchpad PressingScreenjustforprogrammersfeedbackdeletelater_1
+	set duration 0
+	set description "Displays stimuli"
+	draw circle color="#aa0000" fill=1 penwidth=1 r=45.2548339959 show_if=always x=0 y=0 z_index=0
+
+define sketchpad RedDot
+	set duration 0
+	set description "Displays stimuli"
+	draw circle color="#ff0000" fill=1 penwidth=1 r=45.2548339959 show_if=always x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="?" x=0 y=0 z_index=0
+
+define sketchpad RedDot_1
+	set duration 0
+	set description "Displays stimuli"
+	draw circle color="#ff0000" fill=1 penwidth=1 r=45.2548339959 show_if=always x=0 y=0 z_index=0
+
+define keyboard_response TimeEnd
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description "Collects keyboard responses"
+
+define keyboard_response TimeEnd_1
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description "Collects keyboard responses"
+
+define keyboard_response TimeStart_1
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description Keypress
+
+define sequence Trial
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run IsI always
+	run GreenDot always
+	run Clearscreen always
+	run Duration always
+	run RedDot always
+	run TimeEnd always
+	run Clearscreen always
+	run new_logger always
+
+define sequence Trial_1
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run IsI_1 always
+	run GreenDot_1 always
+	run Clearscreen_1 always
+	run Duration_1 always
+	run RedDot_1 always
+	run TimeStart_1 always
+	run PressingScreenjustforprogrammersfeedbackdeletelater_1 always
+	run TimeEnd_1 always
+	run Clearscreen_1 always
+	run new_logger_1 always
+
+define sequence experiment
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Instructions always
+	run new_sketchpad_1 always
+	run mainloop always
+	run pauze always
+	run Instructions2 always
+	run new_sketchpad_1 always
+	run loopBlock2 always
+	run new_sketchpad always
+
+define loop loopBlock2
+	set source table
+	set repeat 2
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 5
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 duration 1165
+	setcycle 0 w 6
+	setcycle 0 block 2
+	setcycle 1 duration 1265
+	setcycle 1 w 6
+	setcycle 1 block 2
+	setcycle 2 duration 1395
+	setcycle 2 w 6
+	setcycle 2 block 2
+	setcycle 3 duration 1535
+	setcycle 3 w 6
+	setcycle 3 block 2
+	setcycle 4 duration 1675
+	setcycle 4 w 16
+	setcycle 4 block 2
+	weight w
+	run Trial
+
+define loop mainloop
+	set source table
+	set repeat 2
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 5
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 duration 1165
+	setcycle 0 w 8
+	setcycle 0 block 1
+	setcycle 1 duration 1265
+	setcycle 1 w 8
+	setcycle 1 block 1
+	setcycle 2 duration 1395
+	setcycle 2 w 8
+	setcycle 2 block 1
+	setcycle 3 duration 1535
+	setcycle 3 w 8
+	setcycle 3 block 1
+	setcycle 4 duration 1675
+	setcycle 4 w 8
+	setcycle 4 block 1
+	weight w
+	run Trial
+
+define inline_javascript new_inline_javascript
+	set description "Executes JavaScript code (ECMA 5.1)"
+	set _run "console.log('im in');"
+	set _prepare ""
+
+define logger new_logger
+	set description "Logs experimental data"
+	set auto_log yes
+
+define logger new_logger_1
+	set description "Logs experimental data"
+	set auto_log yes
+
+define sketchpad new_sketchpad
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="End of the experiment, thank you for collaborating.<br /><br />If you want to have a look at your own data later,<br />make a note of the URL - the numbers you see in there<br />uniquely identify you.<br /><br />Press any key to save your data" x=0 y=0 z_index=0
+
+define sketchpad new_sketchpad_1
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=always style=default x=0 y=0 z_index=0
+
+define sketchpad pauze
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=18 html=yes show_if=always text="End of block 1. <br /><br />Please take a short break, <br />and press a key to start with the second block." x=0 y=0 z_index=0
+
