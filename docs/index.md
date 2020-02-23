@@ -14,7 +14,7 @@ Such interferences can be easily observed in real life experiments, with partici
 
 ## Experiment Design
 
-In their experiment, [[2]]](#2) tasked participants with reproducing time intervals which were sampled from different uniform distributions. Participants were given feedback after each trial. The subjects depicted higher variability for shorter time intervals as compared to longer time intervals, and the general tendency exhibited a regressional tendency to the mean of the distributions used in the stimulus phase.
+In their experiment, [[2]](#2) tasked participants with reproducing time intervals which were sampled from different uniform distributions. Participants were given feedback after each trial. The subjects depicted higher variability for shorter time intervals as compared to longer time intervals, and the general tendency exhibited a regressional tendency to the mean of the distributions used in the stimulus phase.
 
 In our experiment, we alter the previous experiment, utilizing highly skewed base distributions for sampling stimulus signal times from for the second block of the experiment. We also do not provide the participant any feedback as to how the responses differed from the stimulus time. Participants were split into two groups, one group experiencing more samples from shorter time durations and the other experiencing more samples from the long durations. Participants take a break after an initial set of trials before providing responses to the skewed samples. We expect a general increase in the response times and also, that both groups dpict different priors based on the stimulus distribution.
 
